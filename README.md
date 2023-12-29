@@ -19,7 +19,7 @@ User info:
 * commonuser
 * pass12345
 
-Credit cart info (Please look at the website of Stripe):
+Credit cart info (Please look at the website of [Stripe](https://stripe.com/docs):
 * 4242 4242 4242 4242
 * MM/YY (Date can be any further date, like 12/24)
 * CVV (Any 3 digit numbers)
