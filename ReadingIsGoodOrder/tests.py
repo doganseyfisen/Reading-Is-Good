@@ -15,7 +15,7 @@ class OrderAPITestCase(APITestCase):
         # Creating a test category
         self.category = Category.objects.create(name='Fiction', slug='fiction')
 
-        # Creating a test book (assuming Book model from ReadingIsGoodBook app)
+        # Creating a test book
         self.book = Book.objects.create(
             name='Test Book', 
             price=9.99, 
@@ -28,7 +28,7 @@ class OrderAPITestCase(APITestCase):
             first_name='John', 
             last_name='Doe', 
             email='johndoe@example.com', 
-            phone = '123456789',
+            phone ='123456789',
             address='123 Main St', 
             zipcode='12345', 
             place='Test City')
