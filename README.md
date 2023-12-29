@@ -11,6 +11,13 @@ cd {project directory}\readingisgoodvue
 npm run serve
 ```
 
+To run all tests:
+```
+cd {project directory}
+.venv\Scripts\activate
+py manage.py test
+```
+
 Admin (Superuser) info:
 * admin
 * 12345
