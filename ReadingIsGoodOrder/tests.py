@@ -28,7 +28,7 @@ class OrderAPITestCase(APITestCase):
             first_name='John', 
             last_name='Doe', 
             email='johndoe@example.com', 
-            phone ='123456789',
+            phone='123456789',
             address='123 Main St', 
             zipcode='12345', 
             place='Test City')
