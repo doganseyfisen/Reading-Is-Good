@@ -15,12 +15,15 @@
             <div class="column is-4">
                 <h2 clas="subtitle">Book Information</h2>
                 <p><strong>Price: </strong>${{ book.price }}</p>
+                <p><strong>Stock: </strong>{{ book.stock }}</p>
                 <div class="field has-addons mt-4">
                     <div>
-                        <input type="number" class="input" min="1" v-model="quantity">
+                        <input type="number" class="input" min="1" :max="book.stock" v-model="quantity">
                     </div>
                     <div class="control">
-                        <a class="button is-dark" @click="addToCart">Add to cart</a>
+                        <a v-if="book.stock > 0" class="button is-dark" @click="addToCart">Add to cart</a>
+
+                        <a v-else class="button is-dark" disabled>Out of stock</a>
                     </div>
                 </div>
             </div>

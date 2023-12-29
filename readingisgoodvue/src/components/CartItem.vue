@@ -39,9 +39,13 @@ export default {
             this.updateCart()
         },
         incrementQuantity(item) {
-            item.quantity += 1
-
-            this.updateCart()
+            if (item.quantity < item.book.stock) {
+                item.quantity += 1
+                
+                this.updateCart()
+            } else {
+                alert("Not enough books in stock")
+            }
         },
         updateCart() {
             localStorage.setItem('cart', JSON.stringify(this.$store.state.cart))

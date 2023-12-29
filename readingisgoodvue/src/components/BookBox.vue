@@ -10,7 +10,7 @@
             </figure>
 
             <h3 class="is-size-4">{{ book.name }}</h3>
-            <p class="is-size-6 hast-text-grey">${{ book.price }}</p>
+            <p class="is-size-6 hast-text-grey">${{ book.price }} <em>(Stock: {{ book.stock }})</em></p>
 
             <router-link v-bind:to="book.get_absolute_url" class="button is-dark mt-4">For details</router-link>
         </div>

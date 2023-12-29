@@ -8,7 +8,7 @@ from rest_framework import status, authentication, permissions
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Order, OrderItem
+from .models import Order, OrderItem, Book
 from .serializers import OrderSerializer, MyOrderSerializer
 
 @api_view(['POST'])
@@ -28,6 +28,15 @@ def checkout(request):
                 description='Charge from Reading Is Good',
                 source=serializer.validated_data['stripe_token']
             )
+
+            # Updating stock info
+            for item in serializer.validated_data['items']:
+                book = Book.objects.get(id=item['book'].id)
+                book.stock -= item['quantity']
+                if book.stock == 0:
+                    raise Exception('Not enough books in stock')
+                
+                book.save()
 
             serializer.save(user=request.user, paid_amount=paid_amount)
 

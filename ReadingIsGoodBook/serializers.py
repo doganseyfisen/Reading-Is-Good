@@ -9,6 +9,7 @@ class BookSerializer(serializers.ModelSerializer):
             "name",
             "get_absolute_url",
             "price",
+            "stock",
             "get_image",
             "get_thumbnail"
         )
