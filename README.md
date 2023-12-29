@@ -1,13 +1,13 @@
 To run Django:
 ```
-cd E-commerce
+cd {project directory}
 .venv\Scripts\activate
 py manage.py runserver
 ```
 
 To run Vue:
 ```
-cd E-commerce\readingisgoodvue
+cd {project directory}\readingisgoodvue
 npm run serve
 ```
 
