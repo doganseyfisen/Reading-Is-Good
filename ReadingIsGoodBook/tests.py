@@ -13,7 +13,8 @@ class BookAPITestCase(APITestCase):
             name='Test Book',
             category=self.category,
             slug='test-book',
-            price=9.99  # Assuming 'price' is a required field
+            price=9.99,
+            stock=3,
         )
 
     def test_latest_books_list(self):
