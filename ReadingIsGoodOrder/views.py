@@ -46,8 +46,18 @@ def checkout(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         
         except Exception as e:
+            # Create a refund
             stripe.Refund.create(charge=charge.id)
-            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+            # Iterate through the items in the order and update the stock
+            for item in serializer.validated_data['items']:
+                book = Book.objects.get(id=item['book'].id)
+                book.stock += item['quantity']
+                book.save()
+
+            # Return an error response
+            return Response({'error': 'Transaction failed, refund issued'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
     
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

@@ -1,5 +1,4 @@
-
-# Reading Is Good Project README.md
+# Reading Is Good
 
 ## Overview
 **Reading Is Good** is an online books retail firm operating exclusively on the Internet. The project encompasses a Django-based back-end and a Vue.js front-end, providing a comprehensive web application for book browsing, shopping, and order management.
@@ -84,7 +83,6 @@ Both the Django back-end and Vue.js front-end can be containerized using Docker.
 - Back-end API for managing books, orders, and user accounts.
 
 ## API Usage Examples (Insomnia)
-
 - See
   ```
   Insomnia_2023-12-31.json
@@ -102,12 +100,9 @@ commonuser
 pass12345
 ```
 
-## Credit cart info (Please look at the website of [Stripe](https://stripe.com/docs)):
+## Credit cart info ([Stripe](https://stripe.com/docs)):
 ```
 4242 4242 4242 4242
-MM/YY (Date can be any further date, like 12/24)
-CVV (Any 3 digit numbers)
+MM/YY (Any further date)
+CVC (Any 3 digits)
 ```
----
-
-**Note**: This is a basic template for your `README.md`. Depending on the complexity and specifics of your project, you may need to add more sections like `API Documentation`, `Deployment`, `Contributing`, and `License`. Adjust the content based on the actual structure and requirements of your project.
