@@ -21,6 +21,12 @@ def checkout(request):
         stripe.api_key = settings.STRIPE_SECRET_KEY
         paid_amount = sum(item.get('quantity') * item.get('book').price for item in serializer.validated_data['items'])
 
+        # Checking stock
+        for item in serializer.validated_data['items']:
+            book = Book.objects.get(id=item['book'].id)
+            if book.stock < item['quantity']:
+                return Response({'error': 'Not enough books in stock'}, status=status.HTTP_400_BAD_REQUEST)
+
         try:
             charge = stripe.Charge.create(
                 amount=int(paid_amount * 100),
@@ -33,18 +39,15 @@ def checkout(request):
             for item in serializer.validated_data['items']:
                 book = Book.objects.get(id=item['book'].id)
                 book.stock -= item['quantity']
-                if book.stock == 0:
-                    raise Exception('Not enough books in stock')
-                
                 book.save()
 
             serializer.save(user=request.user, paid_amount=paid_amount)
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         
-        except Exception:
-            
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            stripe.Refund.create(charge=charge.id)
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
     
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

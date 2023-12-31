@@ -2,7 +2,7 @@ To run Django:
 ```
 cd {project directory}
 .venv\Scripts\activate
-py manage.py runserver
+python manage.py runserver
 ```
 
 To run Vue:
@@ -15,7 +15,7 @@ To run all tests:
 ```
 cd {project directory}
 .venv\Scripts\activate
-py manage.py test
+python manage.py test
 ```
 
 Admin (Superuser) info:
