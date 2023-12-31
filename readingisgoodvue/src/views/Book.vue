@@ -87,6 +87,22 @@ export default {
 
             this.$store.commit('addToCart', item)
 
+            // Checks stock
+            if (this.book.stock >= this.quantity) {
+                // Updates stock
+                this.book.stock -= this.quantity
+            } else {
+                toast({
+                message: 'Not enough books in stock',
+                type: 'is-danger',
+                dismissible: true,
+                pauseOnHover: true,
+                duration: 2000,
+                position: 'bottom-right',
+                })
+                return
+            }
+
             toast({
                 message: 'The book was added to the cart',
                 type: 'is-success',

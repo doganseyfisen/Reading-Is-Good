@@ -56,7 +56,14 @@ class OrdersList(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, format=None):
-        orders = Order.objects.filter(user=request.user)
+        # If user is Admin 
+        if request.user.is_staff:
+            orders = Order.objects.all()
+        
+        else:
+            # Custom user's own orders
+            orders = Order.objects.filter(user=request.user)
+        
         serializer = MyOrderSerializer(orders, many=True)
         
         return Response(serializer.data)
